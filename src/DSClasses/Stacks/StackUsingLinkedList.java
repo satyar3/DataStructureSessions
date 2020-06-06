@@ -2,7 +2,7 @@ package DSClasses.Stacks;
 
 public class StackUsingLinkedList
 {
-Block block;
+	Block block;
 	
 	class Block
 	{

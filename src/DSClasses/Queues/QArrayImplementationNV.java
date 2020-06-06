@@ -1,6 +1,6 @@
 package DSClasses.Queues;
 
-public class QArrayImplementation
+public class QArrayImplementationNV
 {
 	int capacity;
 	int currentSize;
@@ -8,7 +8,7 @@ public class QArrayImplementation
 	int rear;
 	int arr[];
 	
-	public QArrayImplementation(int capacity)
+	public QArrayImplementationNV(int capacity)
 	{
 		this.capacity = capacity;
 		front = 0;
@@ -65,7 +65,7 @@ public class QArrayImplementation
 	
 	public static void main(String[] args)
 	{
-		QArrayImplementation qArrImple = new QArrayImplementation(6);
+		QArrayImplementationNV qArrImple = new QArrayImplementationNV(6);
 		System.out.println("Q is empty : "+qArrImple.isEmpty());
 		System.out.println("Q is full : "+qArrImple.isFull());
 		qArrImple.enQ(4);
