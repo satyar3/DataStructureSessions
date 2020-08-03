@@ -4,76 +4,67 @@ import java.util.Arrays;
 
 public class MergeSort
 {
-	int [] array;
-	int len;
-	int [] tempArr;
+	static int[] resultArr;
+	static int[] tempArr;
 	
 	public static void main(String[] args)
 	{
-		int[] arr = {7,9,3,6,1,10,13};
-		
-		MergeSort mSort = new MergeSort();		
-		mSort.sort(arr, 0, arr.length-1);
-		
+		int[] arr = {4, 5, 1, 8, 2};
+		mergeSort(arr);
 		System.out.println(Arrays.toString(arr));
 	}
 
-	private void sort(int[] arr, int min, int max)
+	private static void mergeSort(int[] arr)
 	{
-		this.array = arr;
-		this.len = arr.length;
-		this.tempArr = new int[len];		
-		divideAndMegeArray(arr,min,max);
+		resultArr= arr;
+		tempArr = new int[resultArr.length];
+		divide(arr, 0, arr.length-1);
 	}
-	
-	private void divideAndMegeArray(int[] arr, int min, int max)
-	{
-		int mid = min+(max-max)/2;
+
+	private static void divide(int[] arr, int min, int max)
+	{		
+		int mid = min+(max-min)/2;
+		
 		if(min<max)
 		{
-			sort(arr, min, mid);
-			sort(arr, mid+1, max);
-			//System.out.println(arr[min]+" "+arr[max]);
-			merge(min,mid,max);
+			divide(arr, min, mid);
+			divide(arr, mid+1, max);
+			merge(min, mid, max);
 		}
 	}
 
-	private void merge(int min, int mid, int max)
+	private static void merge(int min, int mid, int max)
 	{
-		for(int i = 0; i<array.length; i++)
+		for(int i = 0; i<resultArr.length; i++)
 		{
-			tempArr[i] = array[i];
+			tempArr[i] = resultArr[i];
 		}
 		
-		int leftArrIdx = min;
-		int rightArrIdx = mid+1;
-		int sortedArrIdx = min;
+		int lArrIdx = min;
+		int rArrIdx = mid+1;
+		int resArrIdx = min;
 		
-		while(leftArrIdx<=mid && rightArrIdx<=max)
+		while(lArrIdx<= mid && rArrIdx<= max)
 		{
-			if(tempArr[leftArrIdx] > tempArr[rightArrIdx])
+			if(tempArr[lArrIdx] > tempArr[rArrIdx])
 			{
-				array[sortedArrIdx] = tempArr[rightArrIdx];
-				rightArrIdx++;
+				resultArr[resArrIdx] = tempArr[rArrIdx];
+				rArrIdx++;
 			}
 			else
 			{
-				array[sortedArrIdx] = tempArr[leftArrIdx];
-				leftArrIdx++;
+				resultArr[resArrIdx] = tempArr[lArrIdx];
+				lArrIdx++;
 			}
 			
-			sortedArrIdx++;
+			resArrIdx++;
 		}
 		
-		while(leftArrIdx <= mid)
+		while(lArrIdx<= mid)
 		{
-			array[sortedArrIdx] = tempArr[leftArrIdx];
-			leftArrIdx++;
-			sortedArrIdx++;
+			resultArr[resArrIdx] = tempArr[lArrIdx];
+			lArrIdx++;
+			resArrIdx++;
 		}
-		
-		
 	}
-	
-	
 }

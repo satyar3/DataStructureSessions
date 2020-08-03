@@ -6,22 +6,25 @@ public class InsertionSort
 {
 	public static void main(String[] args)
 	{
-		int[] arr = {3,5,1,4,7};
-		
+		int[] arr = {4,2,5,6,7,1};
+		insertionSort(arr);
+		System.out.println(Arrays.toString(arr));
+	}
+
+	private static void insertionSort(int[] arr)
+	{
 		for(int i = 1; i<arr.length; i++)
 		{
 			int j = i-1;
-			int temp = arr[i];
+			int min = arr[i];
 			
-			while(j>=0 && arr[j]>temp)
+			while(j>=0 && arr[j] > min)
 			{
 				arr[j+1] = arr[j];
 				j--;
 			}
 			
-			arr[j+1] = temp;
+			arr[j+1] = min;
 		}
-		
-		System.out.println(Arrays.toString(arr));
 	}
 }

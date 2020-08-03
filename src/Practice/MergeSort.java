@@ -4,27 +4,25 @@ import java.util.Arrays;
 
 public class MergeSort
 {
-	int[] resArr;
-	int[] tempArr;
+	static int[] resultArr;
+	static int[] tempArr;
 	
 	public static void main(String[] args)
 	{
-		int[] arr = {28,84,14,94,15};
-		MergeSort m = new MergeSort();
-		m.sort(arr, 0, arr.length-1);
+		int[] arr = {4,2,5,6,7,1};
+		mergeSort(arr);
 		System.out.println(Arrays.toString(arr));
 	}
-	
-	public void sort(int[] arr, int min, int max)
+
+	private static void mergeSort(int[] arr)
 	{
-		resArr = arr;
-		tempArr = new int[resArr.length];
-		divide(arr, min, max);
-		
+		resultArr= arr;
+		tempArr = new int[resultArr.length];
+		divide(arr, 0, arr.length-1);
 	}
-	
-	public void divide(int[] arr, int min, int max)
-	{
+
+	private static void divide(int[] arr, int min, int max)
+	{		
 		int mid = min+(max-min)/2;
 		
 		if(min<max)
@@ -34,37 +32,37 @@ public class MergeSort
 			merge(min, mid, max);
 		}
 	}
-	
-	public void merge(int min,int mid, int max)
+
+	private static void merge(int min, int mid, int max)
 	{
-		for(int i = 0; i<resArr.length; i++)
+		for(int i = 0; i<resultArr.length; i++)
 		{
-			tempArr[i] = resArr[i];
+			tempArr[i] = resultArr[i];
 		}
 		
 		int lArrIdx = min;
 		int rArrIdx = mid+1;
 		int resArrIdx = min;
 		
-		while(lArrIdx<=mid && rArrIdx<=max)
+		while(lArrIdx<= mid && rArrIdx<= max)
 		{
 			if(tempArr[lArrIdx] > tempArr[rArrIdx])
 			{
-				resArr[resArrIdx] = tempArr[rArrIdx];
+				resultArr[resArrIdx] = tempArr[rArrIdx];
 				rArrIdx++;
 			}
 			else
 			{
-				resArr[resArrIdx] = tempArr[lArrIdx];
+				resultArr[resArrIdx] = tempArr[lArrIdx];
 				lArrIdx++;
 			}
 			
 			resArrIdx++;
 		}
 		
-		while(lArrIdx<=mid)
+		while(lArrIdx<= mid)
 		{
-			resArr[resArrIdx] = tempArr[lArrIdx];
+			resultArr[resArrIdx] = tempArr[lArrIdx];
 			lArrIdx++;
 			resArrIdx++;
 		}

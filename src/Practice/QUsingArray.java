@@ -3,85 +3,86 @@ package Practice;
 public class QUsingArray
 {
 	int[] arr;
-	int size;
-	int numberOfItems;
 	int front;
 	int rear;
-	
-	public QUsingArray(int size)
+	int currentSize;
+	int length;
+
+	QUsingArray(int length)
 	{
-		this.size = size;
-		arr = new int[size];
+		this.length = length;
+		arr = new int[length];
 		front = 0;
 		rear = -1;
-		numberOfItems = 0;
+		currentSize = 0;
 	}
-	
+
 	public boolean isEmpty()
 	{
-		return (numberOfItems == 0);
+		return (currentSize == 0);
 	}
-	
+
 	public boolean isFull()
 	{
-		return (numberOfItems == size);
+		return (currentSize == arr.length);
 	}
-	
-	public void enQ(int val)
+
+	public void enQ(int value)
 	{
-		if(!isFull())
+		if (!isFull())
 		{
-			if(rear == size-1)
+			if (rear == arr.length - 1)
 			{
 				rear = -1;
 			}
-			
+
 			rear++;
-			arr[rear] = val;
-			numberOfItems++;
-		}
-		else
+			arr[rear] = value;
+			currentSize++;
+		} else
 			System.out.println("Q is full");
 	}
-	
+
 	public void deQ()
 	{
-		if(!isEmpty())
+		if (!isEmpty())
 		{
 			int temp = arr[front];
 			front++;
-			
-			if(front == size)
+
+			if (front == arr.length)
 			{
 				front = 0;
 			}
-			
-			numberOfItems--;
+
+			currentSize--;
 			
 			System.out.println(temp);
-		}
-		else
-			System.out.println("Q is Empty");
+		} else
+			System.out.println("Q is empty");
 	}
-	
+
 	public static void main(String[] args)
 	{
 		QUsingArray q = new QUsingArray(3);
 		
 		q.deQ();
-		q.deQ();
 		
 		q.enQ(3);
+		
 		q.deQ();
 		
+		q.enQ(5);
+		q.enQ(6);
 		q.enQ(7);
-		q.enQ(8);
+		
+		q.deQ();
+		q.deQ();
+		
 		q.enQ(9);
-		q.enQ(10);
-		q.enQ(11);
 		q.deQ();
+		
 		q.deQ();
-		q.enQ(12);
-		q.deQ();
+		
 	}
 }

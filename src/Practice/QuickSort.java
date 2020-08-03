@@ -4,26 +4,31 @@ import java.util.Arrays;
 
 public class QuickSort
 {
+	
 	public static void main(String[] args)
 	{
-		int[] arr = {2,5,1,5,9};
-		QuickSort q = new QuickSort();
-		q.sort(arr, 0, arr.length-1);
+		int[] arr = {4,2,5,6,7,1};
+		quickSort(arr);
 		System.out.println(Arrays.toString(arr));
 	}
-	
-	public int divide(int[] arr, int min, int max)
+
+	private static void quickSort(int[] arr)
 	{
-		int pivot = arr[(min+max)/2];
+		quickSort(arr, 0, arr.length-1);	
+	}
+
+	private static int divide(int[] arr, int min, int max)
+	{
+		int pivotEl = arr[(min+max)/2];	
 		
 		while(min<=max)
 		{
-			while(arr[min] < pivot)
+			while(arr[min] < pivotEl)
 			{
 				min++;
 			}
 			
-			while(arr[max] > pivot)
+			while(arr[max] > pivotEl)
 			{
 				max--;
 			}
@@ -38,18 +43,16 @@ public class QuickSort
 				max--;
 			}
 		}
-		
 		return min;
 	}
 	
-	public void sort(int[] arr, int min, int max)
+	public static void quickSort(int[] arr, int min, int max)
 	{
-		int pivotElIdx = divide(arr, min, max);
+		int pivotEl = divide(arr, min, max);
 		
-		if(min<pivotElIdx-1)
-			sort(arr, min, pivotElIdx-1);
-		
-		if(pivotElIdx<max)
-			sort(arr, pivotElIdx, max);
+		if(min<pivotEl-1)
+			quickSort(arr, min, pivotEl-1);
+		if(pivotEl<max)
+			quickSort(arr, pivotEl, max);
 	}
 }
