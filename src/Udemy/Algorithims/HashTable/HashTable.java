@@ -60,7 +60,7 @@ public class HashTable
 		return hashVal;
 	}
 	
-	//Return StepSize greater tahn 0
+	//Return StepSize greater than 0
 	private int hashFunctionStep(String word)
 	{
 		int hashVal = word.hashCode();
